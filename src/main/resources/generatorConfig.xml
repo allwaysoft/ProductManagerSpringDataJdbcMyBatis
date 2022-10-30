@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="mysqlTables" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/sales"
+                        userId="root"
+                        password="root">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--自动生成的实体的存放包路径 -->
+        <javaModelGenerator targetPackage="com.study.springboot_init.domain"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--自动生成的*Mapper.xml文件存放路径 -->
+        <sqlMapGenerator targetPackage="com.study.springboot_init.dao"
+                         targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--自动生成的*Mapper.java存放路径 -->
+        <javaClientGenerator type="ANNOTATEDMAPPER"
+                             targetPackage="com.study.springboot_init.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--多复制几个table标签,可以同时生成多个表-->
+        <!--<table catalog="sales" tableName="product" domainObjectName="Product">-->
+        <table  tableName="product" domainObjectName="Product">
+            <property name="ignoreQualifiersAtRuntime" value="true"/>
+            <generatedKey column="ID" sqlStatement="Mysql" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>
+
+
