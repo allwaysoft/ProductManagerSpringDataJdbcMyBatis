@@ -13,6 +13,9 @@ import org.apache.ibatis.type.JdbcType;
 
 public interface ProductMapper {
 
+    @Select("select count(*) from product WHERE CONCAT(id, ' ', name, ' ' , brand, ' ' , madein, ' ' , price) LIKE CONCAT('%',#{keyword},'%')  ")
+    int listAllSortPageContainingCount(@Param("keyword") String keyword);
+
     @Select("select * from product WHERE CONCAT(id, ' ', name, ' ' , brand, ' ' , madein, ' ' , price) LIKE CONCAT('%',#{keyword},'%')  order by ${sortField}  ${sortDir} LIMIT ${pageSize} OFFSET ${pageOffset}")
     List<Product> listAllSortPageContaining(@Param("keyword") String keyword, @Param("sortField") String sortField, @Param("sortDir") String sortDir, @Param("pageSize") Integer pageSize, @Param("pageOffset") Long pageOffset);
 
